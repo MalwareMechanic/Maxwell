@@ -1,7 +1,7 @@
-==Maxwell
+###Maxwell
 Maxwell is an automated system which crawls the web and identifies exploit kit and watering hole activity. It can detect these events with high confidence and perform automated processing to determine which exploit kit was involved. This system can support a variety of research or network defense related initiatives.
 
-==Management code
+###Management code
 python/controller.py
 Primary script for spinning virtual machines up and down. Receives jobs from the Rabbitmq job queue and sends this information to a worker virtual machine. This script is currently compatible with esxi, but could be extended to other virtualization or cloud platforms.
 
@@ -17,7 +17,7 @@ Convenience script for querying Maxwell data from the ElasticSearch backend. It 
 python/addSites.py
 Example script to parse a file that contains a list of websites and add them to the Maxwell job queue. 
 
-==VM Code
+###VM Code
 python/agent.py
 Minimal agent that runs in each virtual machine. It monitors for the file 'job.txt' to be created. Once this occurs, it parses the job metadata and executes the corresponding analysis script.
 
@@ -33,7 +33,7 @@ Filters messages as they flow through the named pipe server that match the rules
 python/flux/fluxFilter.txt
 Contains rules used to filter messages that match strings or regexes.
 
-==Instrumentation Library
+###Instrumentation Library
 The Flux instrumentation library is responsible for being loaded into processes across the system. After load, it will hook key APIs in order to collect events such as file writes, process creation, registry writes, and exploit specific behavior. Each event is packed in MessagePack and forwarded to the named pipe server. Flux requires diStorm and msgpack-c which are available here:
 https://github.com/gdabah/distorm
 https://github.com/msgpack/msgpack-c
